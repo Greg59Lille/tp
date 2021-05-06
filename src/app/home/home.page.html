@@ -1,20 +1,55 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title color="danger">
+      Concert
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="danger" routerLink="/concert">ajout
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-list-header color="tertiary">Liste des concerts</ion-list-header>
+    
+    <ion-item *ngFor="let list of listConcert" >
+      <ion-avatar slot="start">
+        
+      </ion-avatar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-label color="tertiary">
+        <p>{{list.groupe}}</p>
+        <p>{{list.salle}}</p>
+        <p>{{list.date}}</p>
+        <p>{{list.ville}}</p>
+        <p>{{list.note}}</p>
+        <p>{{list.genre}}</p>
+        <p>{{list.commentaire}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+<p >Concerts ajoutés par l'utilisateur</p>
+  <ion-item *ngFor="let conc of concertTableau; let position=index">
+    <ion-label color="success">
+      <h1>{{ conc.groupe }}</h1>
+      <p>{{ conc.genre }}</p>
+      <h2>{{ conc.salle +", "+ conc.ville }}</h2>
+      <h3>{{ conc.date }}</h3>
+      <p> {{ conc.note }}</p>
+      <p> {{ conc.commentaire }}</p>
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="deleteOneConcert(position)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-button (click)="modifConcerts(position)">
+      <ion-icon name="options-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  
 </ion-content>
