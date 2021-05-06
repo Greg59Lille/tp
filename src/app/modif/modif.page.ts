@@ -10,12 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifPage implements OnInit {
 
-  constructor(public formConcert: ConcertsService, private router: Router, private toastCtrt: ToastController) { }
+  constructor(public IConcert: ConcertsService, private router: Router, private toastCtrt: ToastController) { }
 
   ngOnInit() {
   }
   public modifConcerts (){
-    this.formConcert.modifConcert();
+    this.IConcert.modifConcert();
     this.router.navigateByUrl('/home');
   }
 

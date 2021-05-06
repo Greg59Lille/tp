@@ -31,11 +31,11 @@ export class HomePage implements OnInit{
     }
   ]
   
-  constructor(public formConcert: ConcertsService, private alertCtrl: AlertController, private router: Router) {}
+  constructor(public IConcert: ConcertsService, private alertCtrl: AlertController, private router: Router) {}
   public concertTableau=[];
 
   public async ngOnInit(){
-    this.concertTableau= await this.formConcert.getConcert();
+    this.concertTableau= await this.IConcert.getConcert();
   }
 
   public async deleteOneConcert(pos){
@@ -45,7 +45,7 @@ export class HomePage implements OnInit{
         { text: 'NON' },
         { 
           text: 'OUI', 
-          handler: ()=> { this.formConcert.deleteConcert(pos)}
+          handler: ()=> { this.IConcert.deleteConcert(pos)}
         }
       ]
     });
@@ -53,7 +53,7 @@ export class HomePage implements OnInit{
     
   }
   public modifConcerts(pos){
-    this.formConcert.input = this.concertTableau[pos]
+    this.IConcert.input = this.concertTableau[pos]
     this.router.navigateByUrl('/modif');
   }
 
